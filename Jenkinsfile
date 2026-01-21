@@ -36,6 +36,12 @@ pipeline {
             }
         }
     }
+    stage('Trigger Backend Deploy') {
+    steps {
+        // Ye Go wali pipeline ko trigger karega
+        build job: 'my-go-pipeline', wait: false
+        }
+    }
 
     // Post section hamesha chalta hai, chahe build success ho ya fail
     post {
