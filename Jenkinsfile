@@ -13,6 +13,22 @@ pipeline {
                 checkout scm
             }
         }
+        stage('SonarQube Analysis') {
+            steps {
+                script {
+                    // Scanner tool wahi rahega jo Jenkins mein configure kiya tha
+                    def scannerHome = tool 'sonar-scanner'
+                    
+                    withSonarQubeEnv('SonarQube') {
+                        sh "${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.projectKey=my-angular-app \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info"
+                    }
+                }
+            }
+        }
 
         stage('Docker Build & Tag') {
             steps {
