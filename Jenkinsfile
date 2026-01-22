@@ -13,6 +13,14 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Gitleaks code check'){
+            steps{
+                script{
+                    echo "Scanning for secrets ...."
+                    sh "docker run --rm -v ${WORKSPACE}:/path zricethezav/gitleaks:latest detect --source=/path --verbose --redact"
+                }
+            }
+        }
         stage('SonarQube Analysis') {
             steps {
                 script {
