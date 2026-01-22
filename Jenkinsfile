@@ -25,6 +25,7 @@ pipeline {
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://sonarqube-server:9000 \
                         -Dsonar.login=${SONAR_TOKEN}"
+                    } 
                 }
             }
         }
