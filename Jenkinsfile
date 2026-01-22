@@ -19,13 +19,12 @@ pipeline {
                     // Scanner tool wahi rahega jo Jenkins mein configure kiya tha
                     def scannerHome = tool 'sonar-scanner'
                     
-                    withSonarQubeEnv('SonarQube') {
+                    withSonarQubeEnv([string(credentialsId: 'sonar-global-token', variable: 'SONAR_TOKEN')]) {
                         sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=my-angular-app \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://sonarqube-server:9000 \
-                        -Dsonar.login=sqa_4e04366daba8c1c9a0df6c5b99750c5944d2b859"
-                    }
+                        -Dsonar.login=${SONAR_TOKEN}"
                 }
             }
         }
