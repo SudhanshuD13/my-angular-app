@@ -13,12 +13,12 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Gitleaks code check'){
-            steps{
-                script{
-                    echo "Scanning for secrets ...."
-                    sh "docker run --rm -v ${WORKSPACE}:/path zricethezav/gitleaks:latest detect --source=/path \
-                    --no-git --report-format json --report-path /path/gitleaks-report.json --verbose --redact"
+        stage('Gitleaks Scan') {
+            steps {
+                script {
+                    echo "🔍 Deep Scanning for secrets..."
+                    // Humne source ko direct . (current dir) kiya aur --no-git force kiya
+                    sh "docker run --rm -v ${WORKSPACE}:/path zricethezav/gitleaks:latest detect --source=/path --no-git --verbose"
                 }
             }
         }
