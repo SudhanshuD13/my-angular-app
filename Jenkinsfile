@@ -24,6 +24,7 @@ pipeline {
                         -Dsonar.projectKey=my-angular-app \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=http://sonarqube-server:9000 \
+                        -Dsonar.login="sqa_4e04366daba8c1c9a0df6c5b99750c5944d2b859"
                         -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info"
                     }
                 }
