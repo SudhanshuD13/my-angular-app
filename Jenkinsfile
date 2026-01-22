@@ -23,7 +23,7 @@ pipeline {
                         sh "${scannerHome}/bin/sonar-scanner \
                         -Dsonar.projectKey=my-angular-app \
                         -Dsonar.sources=. \
-                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.host.url=http://sonarqube-server:9000 \
                         -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info"
                     }
                 }
