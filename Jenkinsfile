@@ -66,8 +66,8 @@ pipeline {
             script {
                 echo "Cleaning up local images..."
                 // Purani images delete karna taaki space bache
-                sh "docker rmi ${DOCKER_USER}/${IMAGE_NAME}:v${env.BUILD_ID}"
-                sh "docker rmi ${DOCKER_USER}/${IMAGE_NAME}:latest"
+                sh "docker rmi -f ${DOCKER_USER}/${IMAGE_NAME}:v${env.BUILD_ID} || true" 
+                sh "docker rmi -f ${DOCKER_USER}/${IMAGE_NAME}:latest || true"
                 
                 // Ye command un faltu layers ko saaf karegi jo build ke waqt banti hain (Dangling images)
                 sh "docker image prune -f"
